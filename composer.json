@@ -1,0 +1,32 @@
+{
+  "name": "sysvyz/anaN",
+  "type": "library",
+  "description": "php math lib",
+  "keywords": [
+    "lphp",
+    "math",
+    "lib"
+  ],
+  "homepage": "https://github.com/sysvyz/anaN",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Moritz Bauer",
+      "email": "mb@sysvyz.org",
+      "homepage": "http://sysvyz.org",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "AnaN\\": "src",
+      "AnaNTest\\": "test"
+    }
+  }
+}
