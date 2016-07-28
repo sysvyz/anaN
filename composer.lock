@@ -4,9 +4,102 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4cb9c42de22eafa86852df55de9440fc",
-    "content-hash": "576a7d5230a5ea0a3943e35bfd7af5b4",
-    "packages": [],
+    "hash": "6d115e9c51ec1bf20d499c86ce885a40",
+    "content-hash": "ffce0fac783ae6c0778f117181040beb",
+    "packages": [
+        {
+            "name": "sysvyz/cofi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mo-ba/cofi.git",
+                "reference": "633eef53e5e871eba28a0079647799261df4d764"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mo-ba/cofi/zipball/633eef53e5e871eba28a0079647799261df4d764",
+                "reference": "633eef53e5e871eba28a0079647799261df4d764",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cofi\\": "src",
+                    "CofiTest\\": "test"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mb",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Comparators & Filters for PHP 5.4",
+            "homepage": "https://github.com/mo-ba/cofi",
+            "keywords": [
+                "comparator",
+                "filter"
+            ],
+            "time": "2016-07-28 15:09:24"
+        },
+        {
+            "name": "sysvyz/hurl",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sysvyz/hurl.git",
+                "reference": "ff5e20942e21db931a98ad3cd2607147291b4714"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sysvyz/hurl/zipball/ff5e20942e21db931a98ad3cd2607147291b4714",
+                "reference": "ff5e20942e21db931a98ad3cd2607147291b4714",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.3.*",
+                "symfony/filesystem": "^3.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Hurl\\": "src",
+                    "HurlTest\\": "test"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Moritz Bauer",
+                    "email": "mb@sysvyz.org",
+                    "homepage": "http://sysvyz.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP7 language wrapper",
+            "homepage": "https://github.com/sysvyz/hurl",
+            "keywords": [
+                "language wrapper"
+            ],
+            "time": "2016-07-18 08:13:35"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -1114,7 +1207,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "sysvyz/hurl": 20,
+        "sysvyz/cofi": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
