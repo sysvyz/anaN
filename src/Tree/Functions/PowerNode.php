@@ -39,7 +39,6 @@ class PowerNode extends AbstractDerivableNode
 
     public function eval(array $variables)
     {
-        print_r([$this->a->eval($variables),$this->a->eval($variables)]);
         return   pow($this->a->eval($variables) , $this->b->eval($variables));
     }
 
