@@ -10,7 +10,7 @@ namespace AnaN\Tree;
 
 
 use AnaN\Calculus\Derivable;
-class ConstantNode implements ConstantNodeInterface
+class ConstantNode extends AbstractDerivableNode implements ConstantNodeInterface
 {
     private $val;
 
@@ -37,5 +37,12 @@ class ConstantNode implements ConstantNodeInterface
     {
         return true;
     }
+	/**
+	 * @return string
+	 */
+	public function render($braced=false)
+	{
+		return $this->val;
+	}
 
 }

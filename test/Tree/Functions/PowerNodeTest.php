@@ -27,8 +27,10 @@ class PowerNodeTest extends \PHPUnit_Framework_TestCase
     {
         $node = new PowerNode(new VariableNode('x'),new ConstantNode(3));
         $d = $node->derive('x');
-        $this->assertEquals(27, $d->eval(['x' => 3]));
-        $this->assertEquals(27, $node->eval(['x' => 3]));
+		$this->assertEquals(27, $d->eval(['x' => 3]));
+		$this->assertEquals(27, $node->eval(['x' => 3]));
+		$this->assertEquals(12, $d->eval(['x' => 2]));
+		$this->assertEquals(8, $node->eval(['x' => 2]));
     }
 
 

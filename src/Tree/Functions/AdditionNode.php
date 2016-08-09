@@ -15,6 +15,9 @@ use AnaN\Tree\Interfaces\DerivableNodeInterface;
 
 class AdditionNode extends AbstractDerivableNode
 {
+
+	protected static $precedence = 4;
+
     /**
      * @var \AnaN\Tree\Interfaces\DerivableNodeInterface[]|array
      */
@@ -43,5 +46,17 @@ class AdditionNode extends AbstractDerivableNode
         }, $this->children));
     }
 
+	/**
+	 * @return string
+	 */
+	public function render($braced = false)
+	{
+		return ($braced?'(':'').implode(' + ',array_map(function(DerivableNodeInterface $node){
+
+
+			$b = $node->getPrecedence()<$this->getPrecedence();
+			return $node->render($b);
+		},$this->children)).($braced?')':'');
+	}
 
 }
