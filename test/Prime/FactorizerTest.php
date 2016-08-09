@@ -25,7 +25,7 @@ class FactorizerTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function testgetDivisors()
+    public function testGetDivisors()
     {
         $f = new Factorizer();
         $this->assertEquals([1, 3, 9, 17, 51, 153, 2971, 8913, 26739, 50507, 151521, 454563],
