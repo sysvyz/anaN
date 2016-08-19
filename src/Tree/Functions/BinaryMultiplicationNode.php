@@ -8,9 +8,9 @@
 
 namespace AnaN\Tree\Functions;
 
-use AnaN\Calculus\Derivable;
 use AnaN\Tree\AbstractDerivableNode;
 use AnaN\Tree\Interfaces\DerivableNodeInterface;
+use AnaN\Tree\Interfaces\VisitorInterface;
 
 class BinaryMultiplicationNode extends AbstractDerivableNode
 {
@@ -36,34 +36,25 @@ class BinaryMultiplicationNode extends AbstractDerivableNode
 		$this->b = $b;
 	}
 
-
-	public function eval(array $variables)
+	public function accept(VisitorInterface $visitor)
 	{
-		return array_product(array_map(function (DerivableNodeInterface $child) use ($variables) {
-			return $child->eval($variables);
-		}, [$this->a, $this->b]));
+		return $visitor->visitBinaryMultiplicationNode($this);
 	}
-
-
-	public function derive(string $variableName) : Derivable
-	{
-		$x = new  BinaryMultiplicationNode($this->a->derive($variableName), $this->b);
-		$y = new  BinaryMultiplicationNode($this->a, $this->b->derive($variableName));
-		return new  AdditionNode($x, $y);
-	}
-
 
 	/**
-	 * @return string
+	 * @return DerivableNodeInterface
 	 */
-	public function render($braced = false)
+	public function getA(): DerivableNodeInterface
 	{
+		return $this->a;
+	}
 
-		$bA = $this->a->getPrecedence()<$this->getPrecedence();
-
-		$bB = ($this->b->getPrecedence()<$this->getPrecedence())?('('):('');
-
-		return ($braced?'(':'').$this->a->render($bA) . ' * ' .$this->b->render($bB).($braced?')':'');
+	/**
+	 * @return DerivableNodeInterface
+	 */
+	public function getB(): DerivableNodeInterface
+	{
+		return $this->b;
 	}
 
 }

@@ -20,18 +20,13 @@ abstract class AbstractDerivableNode implements DerivableNodeInterface
 
 	protected static $precedence = 0;
 
-    public function isDerivable():bool
-    {
-        return true;
-    }
-
 	/**
 	 * @param array ...$values
 	 * @return AdditionNode
 	 */
 	public function add(... $values)
 	{
-		array_unshift($values,$this);
+		array_unshift($values, $this);
 		return Tree::add(... $values);
 	}
 
@@ -53,14 +48,9 @@ abstract class AbstractDerivableNode implements DerivableNodeInterface
 		return Tree::pow($this, $value);
 	}
 
-	public function getPrecedence(){
+	public function getPrecedence()
+	{
 		return static::$precedence;
 	}
-
-	/**
-	 * @param bool $braced
-	 * @return string
-	 */
-	abstract public function render($braced = false);
 
 }

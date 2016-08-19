@@ -12,24 +12,30 @@ namespace Tree\Functions;
 use AnaN\Tree\ConstantNode;
 use AnaN\Tree\Functions\AdditionNode;
 use AnaN\Tree\VariableNode;
+use AnaN\Tree\Visitor\EvaluationVisitor;
+use AnaN\Tree\Visitor\Node\DerivationVisitor;
 
 class AdditionNodeTest extends \PHPUnit_Framework_TestCase
 {
-    public function testAddNodeWithOnlyConstants()
-    {
-        $node = new AdditionNode(new ConstantNode(4), new ConstantNode(2), new ConstantNode(1));
-        $d = $node->derive('x');
-        $this->assertEquals(0, $d->eval(['x' => 3]));
-        $this->assertEquals(7, $node->eval(['x' => 3]));
-    }
+	public function testAddNodeWithOnlyConstants()
+	{
+		$deriver = new DerivationVisitor('x');
+		$eval = new EvaluationVisitor(['x' => 3]);
+		$node = new AdditionNode(new ConstantNode(4), new ConstantNode(2), new ConstantNode(1));
+		$d = $deriver->visit($node);
+		$this->assertEquals(7, $eval->visit($node));
+		$this->assertEquals(0, $eval->visit($d));
+	}
 
-    public function testAddNodeWithVariable()
-    {
-        $node = new AdditionNode(new ConstantNode(4), new ConstantNode(2), new VariableNode('x'));
-        $d = $node->derive('x');
-        $dd = $d->derive('x');
-        $this->assertEquals(9, $node->eval(['x' => 3]));
-        $this->assertEquals(1, $d->eval(['x' => 3]));
-        $this->assertEquals(0, $dd->eval(['x' => 3]));
-    }
+	public function testAddNodeWithVariable()
+	{
+		$deriver = new DerivationVisitor('x');
+		$eval = new EvaluationVisitor(['x' => 3]);
+		$node = new AdditionNode(new ConstantNode(4), new ConstantNode(2), new VariableNode('x'));
+		$d = $deriver->visit($node);
+		$dd = $deriver->visit($d);
+		$this->assertEquals(9, $eval->visit($node));
+		$this->assertEquals(1, $eval->visit($d));
+		$this->assertEquals(0, $eval->visit($dd));
+	}
 }

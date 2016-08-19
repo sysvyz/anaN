@@ -12,4 +12,8 @@ namespace AnaN\Tree\Interfaces;
 interface VariableNodeInterface extends DerivableNodeInterface
 {
 
+	/**
+	 * @return mixed
+	 */
+	public function getName();
 }

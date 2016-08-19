@@ -9,22 +9,25 @@
 namespace AnaN\Tree\Functions;
 
 
-use AnaN\Calculus\Derivable;
 use AnaN\Tree\AbstractDerivableNode;
 use AnaN\Tree\ConstantNode;
+use AnaN\Tree\Factory\Tree;
 use AnaN\Tree\Interfaces\DerivableNodeInterface;
+use AnaN\Tree\Interfaces\VisitorInterface;
 
 class PowerNode extends AbstractDerivableNode
 {
 	protected static $precedence = 6;
+
 	/**
 	 * @var DerivableNodeInterface
 	 */
-	private $a;
+	private $base;
+
 	/**
 	 * @var DerivableNodeInterface
 	 */
-	private $b;
+	private $exponent;
 
 	/**
 	 * BinaryMultiplicationNode constructor.
@@ -33,35 +36,30 @@ class PowerNode extends AbstractDerivableNode
 	 */
 	public function __construct(DerivableNodeInterface $a, DerivableNodeInterface $b)
 	{
-		$this->a = $a;
-		$this->b = $b;
+		$this->base = $a;
+		$this->exponent = $b;
 	}
 
-
-	public function eval(array $variables)
+	public function accept(VisitorInterface $visitor)
 	{
-		return pow($this->a->eval($variables), $this->b->eval($variables));
-	}
-
-
-	public function derive(string $variableName) : Derivable
-	{
-		$exp = new AdditionNode($this->b, new ConstantNode(-1));
-		$pow = new PowerNode($this->a, $exp);
-		return new BinaryMultiplicationNode(new BinaryMultiplicationNode($this->b, $pow), $this->a->derive($variableName));
+		return $visitor->visitPowerNode($this);
 	}
 
 	/**
-	 * @return string
+	 * @return DerivableNodeInterface
 	 */
-	public function render($braced = false)
+	public function getBase(): DerivableNodeInterface
 	{
-
-		$bA = $this->a->getPrecedence()<$this->getPrecedence();
-
-		$bB = ($this->b->getPrecedence()<$this->getPrecedence())?('('):('');
-
-		return ($braced?'(':'').$this->a->render($bA) . ' ^ ' .$this->b->render($bB).($braced?')':'');
-
+		return $this->base;
 	}
+
+	/**
+	 * @return DerivableNodeInterface
+	 */
+	public function getExponent(): DerivableNodeInterface
+	{
+		return $this->exponent;
+	}
+
+
 }

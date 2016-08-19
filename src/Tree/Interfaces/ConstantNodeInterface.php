@@ -5,12 +5,15 @@
  * Date: 29.07.16
  * Time: 00:01
  */
-namespace AnaN\Tree;
+namespace AnaN\Tree\Interfaces;
 
 use AnaN\Tree\Interfaces\DerivableNodeInterface;
 
 interface ConstantNodeInterface extends DerivableNodeInterface
 {
 
-    public function isDerivable() : bool;
+	/**
+	 * @return mixed
+	 */
+	public function getValue();
 }

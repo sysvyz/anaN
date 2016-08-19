@@ -9,7 +9,8 @@
 namespace AnaN\Algebra;
 
 
-class MatrixInterface
+interface MatrixInterface
 {
+
 
 }
