@@ -40,7 +40,7 @@ function add(... $vals)
 
 /**
  * @param array ...$vals
- * @return BinaryMultiplicationNode
+ * @return ArrayMultiplicationNode
  */
 function mult(... $vals)
 {
@@ -88,7 +88,7 @@ final class Tree
 
 	/**
 	 * @param array ...$vals
-	 * @return BinaryMultiplicationNode
+	 * @return ArrayMultiplicationNode
 	 */
 	public static function mult(... $vals)
 	{
