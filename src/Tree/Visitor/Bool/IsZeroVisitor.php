@@ -88,7 +88,7 @@ class IsZeroVisitor extends BooleanVisitor
 	 * @param NodeInterface $node
 	 * @return bool
 	 */
-	public function _evalIsZero(NodeInterface $node)
+	protected function _evalIsZero(NodeInterface $node)
 	{
 		try {
 			return $this->evalVisitor->visit($node) == 0;

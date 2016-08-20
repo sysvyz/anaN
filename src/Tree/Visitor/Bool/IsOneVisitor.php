@@ -76,7 +76,7 @@ class IsOneVisitor extends BooleanVisitor
 	 * @param NodeInterface $node
 	 * @return bool
 	 */
-	public function _evalIsOne(NodeInterface $node)
+	protected function _evalIsOne(NodeInterface $node)
 	{
 		try {
 			return $this->evalVisitor->visit($node) == 1;
@@ -89,7 +89,7 @@ class IsOneVisitor extends BooleanVisitor
 	 * @param NodeInterface $node
 	 * @return bool
 	 */
-	public function _evalIsZero(NodeInterface $node)
+	protected function _evalIsZero(NodeInterface $node)
 	{
 		try {
 			return $this->evalVisitor->visit($node) == 0;
