@@ -11,6 +11,6 @@ namespace AnaN\Calculus;
 
 interface FunctionInterface
 {
-    public function eval(array $variables);
+
 
 }

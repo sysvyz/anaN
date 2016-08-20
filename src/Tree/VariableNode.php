@@ -1,8 +1,8 @@
 <?php namespace AnaN\Tree;
 
 
-use AnaN\Calculus\Derivable;
 use AnaN\Tree\Interfaces\VariableNodeInterface;
+use AnaN\Tree\Interfaces\VisitorInterface;
 
 class VariableNode extends AbstractDerivableNode implements VariableNodeInterface
 {
@@ -18,27 +18,18 @@ class VariableNode extends AbstractDerivableNode implements VariableNodeInterfac
 		$this->name = $name;
 	}
 
-
-	public function derive(string $variableName):Derivable
+	public function accept(VisitorInterface $visitor)
 	{
-		return new ConstantNode(1);
-	}
-
-	public function eval(array $variables)
-	{
-		return $variables[$this->name];
-	}
-
-	public function isDerivable():bool
-	{
-		return true;
+		return $visitor->visitVariableNode($this);
 	}
 
 	/**
-	 * @return string
+	 * @return mixed
 	 */
-	public function render($braced = false)
+	public function getName()
 	{
 		return $this->name;
 	}
+
+
 }

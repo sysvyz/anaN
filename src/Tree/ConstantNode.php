@@ -9,40 +9,33 @@
 namespace AnaN\Tree;
 
 
-use AnaN\Calculus\Derivable;
+use AnaN\Tree\Interfaces\ConstantNodeInterface;
+use AnaN\Tree\Interfaces\VisitorInterface;
+
 class ConstantNode extends AbstractDerivableNode implements ConstantNodeInterface
 {
-    private $val;
+	private $value;
 
-    /**
-     * ConstantNode constructor.
-     * @param $val
-     */
-    public function __construct($val)
-    {
-        $this->val = $val;
-    }
-
-    public function derive(string $variableName):Derivable
-    {
-        return new self(0);
-    }
-
-    public function eval(array $variables)
-    {
-        return $this->val;
-    }
-
-    public function isDerivable():bool
-    {
-        return true;
-    }
 	/**
-	 * @return string
+	 * ConstantNode constructor.
+	 * @param $val
 	 */
-	public function render($braced=false)
+	public function __construct($val)
 	{
-		return $this->val;
+		$this->value = $val;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getValue()
+	{
+		return $this->value;
+	}
+
+	public function accept(VisitorInterface $visitor)
+	{
+		return $visitor->visitConstantNode($this);
 	}
 
 }

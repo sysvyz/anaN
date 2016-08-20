@@ -4,6 +4,7 @@
 use AnaN\Tree\AbstractDerivableNode;
 use AnaN\Tree\ConstantNode;
 use AnaN\Tree\Functions\AdditionNode;
+use AnaN\Tree\Functions\ArrayMultiplicationNode;
 use AnaN\Tree\Functions\BinaryMultiplicationNode;
 use AnaN\Tree\Functions\PowerNode;
 use AnaN\Tree\Interfaces\DerivableNodeInterface;
@@ -43,7 +44,7 @@ function add(... $vals)
  */
 function mult(... $vals)
 {
-	return new BinaryMultiplicationNode(... array_map('AnaN\Tree\Factory\getNode', $vals));
+	return new ArrayMultiplicationNode(... array_map('AnaN\Tree\Factory\getNode', $vals));
 
 }
 

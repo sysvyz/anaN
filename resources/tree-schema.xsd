@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.sysvyz.org"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="node" type="sys:nodeType" xmlns:sys="http://www.sysvyz.org"/>
+
+    <xs:complexType name="exponentType">
+        <xs:sequence>
+            <xs:element type="sys:nodeType" name="node" xmlns:sys="http://www.sysvyz.org"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="constantType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="value" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="variableType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="value" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="baseType">
+        <xs:sequence>
+            <xs:element type="sys:nodeType" name="node" xmlns:sys="http://www.sysvyz.org"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="powerType">
+        <xs:sequence>
+            <xs:element type="sys:baseType" name="base" minOccurs="1" maxOccurs="1" xmlns:sys="http://www.sysvyz.org"/>
+            <xs:element type="sys:exponentType" name="exponent" minOccurs="1" maxOccurs="1"  xmlns:sys="http://www.sysvyz.org"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="nodeType">
+        <xs:choice>
+            <xs:element type="sys:variableType" name="variable" minOccurs="0" xmlns:sys="http://www.sysvyz.org"/>
+            <xs:element type="sys:constantType" name="constant" minOccurs="0" xmlns:sys="http://www.sysvyz.org"/>
+            <xs:element type="sys:multiplicationType" name="multiplication" minOccurs="0"
+                        xmlns:sys="http://www.sysvyz.org"/>
+            <xs:element type="sys:powerType" name="power" minOccurs="0" xmlns:sys="http://www.sysvyz.org"/>
+            <xs:element type="sys:additionType" name="addition" minOccurs="0" xmlns:sys="http://www.sysvyz.org"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="additionType">
+        <xs:sequence>
+            <xs:element type="sys:nodeType" name="node" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:sys="http://www.sysvyz.org"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="multiplicationType">
+        <xs:sequence>
+            <xs:element type="sys:nodeType" name="node" maxOccurs="unbounded" minOccurs="0"
+                        xmlns:sys="http://www.sysvyz.org"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+    </xs:complexType>
+
+</xs:schema>
