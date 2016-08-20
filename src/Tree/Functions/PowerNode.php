@@ -64,4 +64,5 @@ class PowerNode extends AbstractDerivableNode
 		return ($braced?'(':'').$this->a->render($bA) . ' ^ ' .$this->b->render($bB).($braced?')':'');
 
 	}
+
 }
