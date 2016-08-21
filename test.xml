@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<node xmlns="http://www.sysvyz.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sysvyz.org resources/tree-schema.xsd">
+    <multiplication type="array">
+        <node>
+            <addition>
+                <node>
+                    <variable value="x"/>
+                </node>
+                <node>
+                    <constant value="67"/>
+                </node>
+            </addition>
+        </node>
+        <node>
+            <power>
+                <base>
+                    <node>
+                        <multiplication type="array">
+                            <node>
+                                <variable value="x"/>
+                            </node>
+                            <node>
+                                <constant value="4"/>
+                            </node>
+                            <node>
+                                <variable value="x"/>
+                            </node>
+                            <node>
+                                <addition>
+                                    <node>
+                                        <multiplication type="array">
+                                            <node>
+                                                <variable value="x"/>
+                                            </node>
+                                            <node>
+                                                <constant value="67"/>
+                                            </node>
+                                        </multiplication>
+                                    </node>
+                                    <node>
+                                        <power>
+                                            <base>
+                                                <node>
+                                                    <multiplication type="array">
+                                                        <node>
+                                                            <variable value="x"/>
+                                                        </node>
+                                                        <node>
+                                                            <constant value="24"/>
+                                                        </node>
+                                                    </multiplication>
+                                                </node>
+                                            </base>
+                                            <exponent>
+                                                <node>
+                                                    <constant value="2"/>
+                                                </node>
+                                            </exponent>
+                                        </power>
+                                    </node>
+                                </addition>
+                            </node>
+                        </multiplication>
+                    </node>
+                </base>
+                <exponent>
+                    <node>
+                        <constant value="2"/>
+                    </node>
+                </exponent>
+            </power>
+        </node>
+    </multiplication>
+</node>

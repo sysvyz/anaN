@@ -2,6 +2,8 @@
 
 
 use AnaN\Tree\Factory\Tree;
+use AnaN\Tree\Parser\XmlSaxParser;
+use AnaN\Tree\Visitor\EvaluationVisitor;
 use AnaN\Tree\Visitor\XMLVisitor;
 
 class XMLVisitorTest extends \PHPUnit_Framework_TestCase
@@ -14,22 +16,36 @@ class XMLVisitorTest extends \PHPUnit_Framework_TestCase
 		$node = Tree::add(Tree::mult('x', 67), Tree::pow(Tree::mult('x', Tree::add(Tree::mult('x', 67), Tree::pow(Tree::mult('x', 24), 2))), 2));
 		$xml = XMLVisitor::init();
 
-		$str =  $xml->visit($node);
+		$str = $xml->visit($node);
 
 		$xml = new \DOMDocument();
 		$xml->loadXML($str);
-		$this->assertTrue($xml->schemaValidate(__DIR__.'/../../../resources/tree-schema.xsd'));
+		$this->assertTrue($xml->schemaValidate(__DIR__ . '/../../../resources/tree-schema.xsd'));
 	}
+
 	public function testRender2()
 	{
 
-		$node = Tree::mult(Tree::add('x', 67), Tree::pow(Tree::mult('x',Tree::mult(4,'x'), Tree::add(Tree::mult('x', 67), Tree::pow(Tree::mult('x', 24), 2))), 2));
+		$node = Tree::mult(Tree::add('x', 67), Tree::pow(Tree::mult('x', Tree::mult(4, 'x'), Tree::add(Tree::mult('x', 67), Tree::pow(Tree::mult('x', 24), 2))), 2));
 		$xml = XMLVisitor::init();
-		$str =  $xml->visit($node);
-		echo $str;
+		$str = $xml->visit($node);
+
 		$xml = new \DOMDocument();
 		$xml->loadXML($str);
-		$this->assertTrue($xml->schemaValidate(__DIR__.'/../../../resources/tree-schema.xsd'));
+		$this->assertTrue($xml->schemaValidate(__DIR__ . '/../../../resources/tree-schema.xsd'));
+
+		$parser = new XmlSaxParser();
+
+		$parsedNode = $parser->parse($str);
+
+		for ($i = 1; $i < 3; $i += 0.01) {
+
+			$eval = new EvaluationVisitor(['x' => $i]);
+			$this->assertEquals($eval->visit($node), $eval->visit($parsedNode));
+
+		}
+		echo $str;
+
 	}
 }
 

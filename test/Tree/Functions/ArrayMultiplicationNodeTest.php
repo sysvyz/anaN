@@ -6,7 +6,7 @@
  * Time: 23:31
  */
 
-namespace Tree\Functions;
+namespace AnaNTest\Tree\Functions;
 
 
 use AnaN\Tree\ConstantNode;

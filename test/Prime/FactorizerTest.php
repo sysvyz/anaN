@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: angus
- * Date: 09.08.16
- * Time: 17:12
- */
-
-namespace Prime;
+<?php namespace AnaNTest\Prime;
 
 
 use AnaN\Prime\Factorizer;

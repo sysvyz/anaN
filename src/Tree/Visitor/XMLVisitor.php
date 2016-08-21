@@ -32,50 +32,53 @@ class XMLVisitor extends AbstractVisitor
 
 	public function visitAdditionNode(AdditionNode $node)
 	{
-		return $this->_renderNode($this->_indent($this->depth+1) . '<addition>' . PHP_EOL . implode(PHP_EOL, array_map(function (DerivableNodeInterface $child) {
+		return $this->_renderNode($this->_indent($this->depth + 1) . '<addition>' . PHP_EOL .
+			implode(PHP_EOL, array_map(function (DerivableNodeInterface $child) {
 				$v = new XMLVisitor($this->depth + 2);
 				return $v->visit($child);
-			}, $node->getChildren())) . PHP_EOL . $this->_indent($this->depth+1) . '</addition>');
+			}, $node->getChildren())) . PHP_EOL . $this->_indent($this->depth + 1) . '</addition>');
 	}
 
 	public function visitArrayMultiplicationNode(ArrayMultiplicationNode $node)
 	{
-		return $this->_renderNode($this->_indent($this->depth+1) . '<multiplication type="array">' . PHP_EOL . implode(PHP_EOL, array_map(function (DerivableNodeInterface $child) {
+		return $this->_renderNode($this->_indent($this->depth + 1) . '<multiplication type="array">' . PHP_EOL .
+			implode(PHP_EOL, array_map(function (DerivableNodeInterface $child) {
 				$v = new XMLVisitor($this->depth + 2);
 				return $v->visit($child);
-			}, $node->getChildren())) . PHP_EOL . $this->_indent($this->depth+1) . '</multiplication>');
+			}, $node->getChildren())) . PHP_EOL . $this->_indent($this->depth + 1) . '</multiplication>');
 	}
 
 	public function visitBinaryMultiplicationNode(BinaryMultiplicationNode $node)
 	{
-		return $this->_renderNode($this->_indent($this->depth+1) . '<multiplication type="binary">' . PHP_EOL . implode(PHP_EOL, array_map(function (DerivableNodeInterface $child) {
+		return $this->_renderNode($this->_indent($this->depth + 1) . '<multiplication type="binary">' . PHP_EOL .
+			implode(PHP_EOL, array_map(function (DerivableNodeInterface $child) {
 				$v = new XMLVisitor($this->depth + 2);
 				return $v->visit($child);
-			}, [$node->getA(), $node->getB()])) . PHP_EOL . $this->_indent($this->depth+1) . '</multiplication>');
+			}, [$node->getA(), $node->getB()])) . PHP_EOL . $this->_indent($this->depth + 1) . '</multiplication>');
 	}
 
 
 	public function visitPowerNode(PowerNode $node)
 	{
 		$v = new XMLVisitor($this->depth + 3);
-		return $this->_renderNode($this->_indent($this->depth+1) . '<power>' . PHP_EOL .
-			$this->_indent($this->depth+2) . '<base>' . PHP_EOL .
+		return $this->_renderNode($this->_indent($this->depth + 1) . '<power>' . PHP_EOL .
+			$this->_indent($this->depth + 2) . '<base>' . PHP_EOL .
 			$v->visit($node->getBase()) . PHP_EOL .
-			$this->_indent($this->depth+2) . '</base>' . PHP_EOL .
-			$this->_indent($this->depth+2) . 	'<exponent>' . PHP_EOL .
+			$this->_indent($this->depth + 2) . '</base>' . PHP_EOL .
+			$this->_indent($this->depth + 2) . '<exponent>' . PHP_EOL .
 			$v->visit($node->getExponent()) . PHP_EOL .
-			$this->_indent($this->depth+2) . 	'</exponent>' . PHP_EOL .
-			$this->_indent($this->depth+1) . 	'</power>');
+			$this->_indent($this->depth + 2) . '</exponent>' . PHP_EOL .
+			$this->_indent($this->depth + 1) . '</power>');
 	}
 
 	public function visitConstantNode(ConstantNodeInterface $node)
 	{
-		return $this->_renderNode($this->_indent($this->depth+1) . '<constant value="' . $node->getValue() . '"/>');
+		return $this->_renderNode($this->_indent($this->depth + 1) . '<constant value="' . $node->getValue() . '"/>');
 	}
 
 	public function visitVariableNode(VariableNodeInterface $node)
 	{
-		return $this->_renderNode($this->_indent($this->depth+1) . '<variable value="' . $node->getName() . '"/>');
+		return $this->_renderNode($this->_indent($this->depth + 1) . '<variable value="' . $node->getName() . '"/>');
 	}
 
 	private function _renderNode($string)

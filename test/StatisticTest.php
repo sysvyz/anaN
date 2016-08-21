@@ -1,4 +1,4 @@
-<?php
+<?php namespace AnaNTest;
 use AnaN\Point2DInterface;
 use AnaN\Statistic;
 
@@ -8,7 +8,7 @@ use AnaN\Statistic;
  * Date: 26.07.16
  * Time: 15:06
  */
-class StatisticTest extends PHPUnit_Framework_TestCase
+class StatisticTest extends \PHPUnit_Framework_TestCase
 {
 
 
